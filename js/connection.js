@@ -64,6 +64,8 @@ function SetRobot() {
         if (isConnected) {
             document.getElementById("dir--keys").style.display == "none" ? document.getElementById("dir--keys").style.display = "flex" : document.getElementById("dir--keys").style.display = "none";
             CreateGesturesButtons();
+            CreateSoundsButtons();
+            CreateSkillsButtons();
             CreateUltrasound();
             CreateAvoidance();
             CreateForce();

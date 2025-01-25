@@ -1,17 +1,21 @@
 function Joystick(x,y) {
   sendData("J"+x+","+y+"\n");
 }
-
-function Move(i) { sendData(`M ${i}\r`); }
-
-function Skill(i) { sendData(`M ${i}\r`); }
-
-function Sound(i) { sendData(`K ${i}\r`); }
-
-function Gesture(i) { sendData(`H ${i}\r`); }
-
-function Stop(delay) { setTimeout(() => sendData('S\r'), delay); }
-
+function Forward() {
+  sendData("forward " + document.getElementById("speed--slider").value + "\n");
+}
+function Backward() {
+  sendData("backward " + document.getElementById("speed--slider").value + "\n");
+}
+function Right() {
+  sendData("right " + document.getElementById("speed--slider").value + "\n");
+}
+function Left() {
+  sendData("left " + document.getElementById("speed--slider").value + "\n");
+}
+function Stop() {
+  sendData("stop\n");
+}
 function Happy() {
   sendData("happy\n");
 }

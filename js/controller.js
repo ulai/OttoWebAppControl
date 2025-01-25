@@ -29,65 +29,15 @@ window.addEventListener('keyup', function (e) {
     KEY = 0;
 }, false);
 
-function btnPressed(btn) {
-    
+function btnPressed(btn) {    
     if (OttoConnected) { 
-        if (btn == "up") {
-            changeBackgroundColor("up");
-            Forward();
-        }
-        else if  (btn == "down"){
-            changeBackgroundColor("down");
-            Backward();
-        }
-        else if  (btn == "right"){
-            changeBackgroundColor("right");
-            Right();
-        }
-        else if  (btn == "left"){
-            changeBackgroundColor("left");
-            Left();
-        }
-        else if  (btn == "s"){
-            changeBackgroundColor("s");
-            Stop();
-        }
-        else {
-            //Stop();
-        }
-            
+        const i = ['stop','up','down','right','left'].indexOf(btn);
+        if(i == -1) return;
+        changeBackgroundColor(btn);
+        Move(i);
     }
 }
 
 function changeBackgroundColor(btn) {
-    if (btn == "up") {
-        document.getElementsByClassName('up')[0].style.backgroundColor = "#FF5700";
-        document.getElementsByClassName('right')[0].style.backgroundColor = "#32D900";
-        document.getElementsByClassName('down')[0].style.backgroundColor = "#32D900";
-        document.getElementsByClassName('left')[0].style.backgroundColor = "#32D900";
-    }
-    else if (btn == "right") {
-        document.getElementsByClassName('up')[0].style.backgroundColor = "#32D900";
-        document.getElementsByClassName('right')[0].style.backgroundColor = "#FF5700";
-        document.getElementsByClassName('down')[0].style.backgroundColor = "#32D900";
-        document.getElementsByClassName('left')[0].style.backgroundColor = "#32D900";
-    }
-    else if (btn == "down") {
-        document.getElementsByClassName('up')[0].style.backgroundColor = "#32D900";
-        document.getElementsByClassName('right')[0].style.backgroundColor = "#32D900";
-        document.getElementsByClassName('down')[0].style.backgroundColor = "#FF5700";
-        document.getElementsByClassName('left')[0].style.backgroundColor = "#32D900";
-    }
-    else if (btn == "left") {
-        document.getElementsByClassName('up')[0].style.backgroundColor = "#32D900";
-        document.getElementsByClassName('right')[0].style.backgroundColor = "#32D900";
-        document.getElementsByClassName('down')[0].style.backgroundColor = "#32D900";
-        document.getElementsByClassName('left')[0].style.backgroundColor = "#FF5700";
-    }
-    else if (btn == "s") {
-        document.getElementsByClassName('up')[0].style.backgroundColor = "#32D900";
-        document.getElementsByClassName('right')[0].style.backgroundColor = "#32D900";
-        document.getElementsByClassName('down')[0].style.backgroundColor = "#32D900";
-        document.getElementsByClassName('left')[0].style.backgroundColor = "#32D900";
-    }
+    ['up','down','right','left'].forEach(s => document.getElementsByClassName(s)[0].style.backgroundColor = (btn == s ? "#FF5700" : "#32D900"));
 }

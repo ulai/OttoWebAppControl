@@ -124,7 +124,7 @@
                         </div>
                         <div class="middle">
                             <span class="left arrow" onclick="btnPressed('left')"></span>
-                            <span class="stop--button" onclick="btnPressed('s')"></span>
+                            <span class="stop--button" onclick="btnPressed('stop')"></span>
                             <span class="right arrow" onclick="btnPressed('right')"></span>
                         </div>
                         <div class="bottom">
@@ -342,38 +342,83 @@
             funRobot.appendChild(followDiv);
         }
 
+        function CreateSoundsButtons() {
+            const soundsDiv = document.createElement("div");
+            soundsDiv.id = "sound--buttons";
+            fun.appendChild(soundsDiv);
+            const sounds = [
+                {n: 'mode1', i: 16},
+                {n: 'mode2', i: 17},
+                {n: 'mode3', i: 18},
+                {n: 'ohooh', i: 4},
+                {n: 'buttonPushed', i: 19},
+                {n: 'happyShort', i: 10},
+                {n: 'happy', i: 8},
+                {n: 'superHappy', i: 9},
+                {n: 'sad', i: 11},
+                {n: 'sleeping', i: 7},
+                {n: 'surprise', i: 3},
+                {n: 'disconnection', i: 2},
+                {n: 'confused', i: 12},
+                {n: 'fart3', i: 15},
+                {n: 'cuddly', i: 6},
+            ];
+            sounds.forEach(x => CreateButton(soundsDiv, 'sounds', x, i => Sound(i)));
+        }
+
         function CreateGesturesButtons() {
             const gesturesDiv = document.createElement("div");
             gesturesDiv.id = "gestures--buttons";
             fun.appendChild(gesturesDiv);
-            let btn;
-            for (let i = 0; i < 7; i++) {
-                btn = document.createElement("button");
-                btn.classList.add("otto--gesture");
-                if (i == 0) {
-                    btn.innerText = "Happy";
-                    btn.addEventListener("click", () =>{Happy()});
-                } else if (i == 1) {
-                    btn.innerText = "Victory";
-                    btn.addEventListener("click", () =>{Victory()});
-                } else if (i == 2) {
-                    btn.innerText = "Sad";
-                    btn.addEventListener("click", () =>{Sad()});
-                } else if (i == 3) {
-                    btn.innerText = "Sleeping";
-                    btn.addEventListener("click", () =>{Sleeping()});
-                } else if (i == 4) {
-                    btn.innerText = "Confused";
-                    btn.addEventListener("click", () =>{Confused()});
-                } else if (i == 5) {
-                    btn.innerText = "Fail";
-                    btn.addEventListener("click", () =>{Fail()});
-                } else if (i == 6) {
-                    btn.innerText = "Fart";
-                    btn.addEventListener("click", () =>{Fart()});
-                }
-                gesturesDiv.appendChild(btn);
-            }
+                const gestures = [
+                    {n: 'happy', i: 1},
+                    {n: 'superhappy', i: 2},
+                    {n: 'love', i: 7},
+                    {n: 'sad', i: 3},
+                    {n: 'fail', i: 13},
+                    {n: 'confused', i: 6},
+                    {n: 'fart', i: 5},
+                    {n: 'fretful', i: 9},
+                    {n: 'angry', i: 8},
+                    {n: 'sleeping', i: 4},
+                    {n: 'magic', i: 10},
+                    {n: 'victory', i: 12},
+                    {n: 'wave', i: 11},
+            ];
+            gestures.forEach(x => CreateButton(gesturesDiv, 'gestures', x, i => Gesture(i)));
+        }
+
+        function CreateSkillsButtons() {
+            const skillsDiv = document.createElement("div");
+            skillsDiv.id = "skills--buttons";
+            fun.appendChild(skillsDiv);
+            const skills = [
+                {n: 'jitter', i: 19},
+                {n: 'swing', i: 8},
+                {n: 'tiptoe', i: 14},
+                {n: 'ascend', i: 20},
+                {n: 'updown', i: 5},
+                {n: 'flapback', i: 13},
+                {n: 'moonwalkleft', i: 7},
+                {n: 'shakeleft', i: 17},
+                {n: 'bendleft', i: 15},
+                {n: 'crossleft', i: 10},
+                {n: 'flapfront', i: 12},
+                {n: 'moonwalkright', i: 6},
+                {n: 'shakeright', i: 18},
+                {n: 'bendright', i: 16},
+                {n: 'crossright', i: 9},
+            ];
+            skills.forEach(x => CreateButton(skillsDiv, 'skills', x, i => { Skill(i); Stop(600); } ));
+        }
+
+        function CreateButton(div, n, x, fn) {
+            const btn = document.createElement("button");
+            btn.classList.add(`otto--${n}`);
+            btn.title = x.n;
+            btn.style = `background: url(img/${n}/${x.n}.png) center; padding: 3rem; margin: 3px; border: 3px solid darkgray;`;
+            btn.addEventListener("click", () => fn(x.i));
+            div.appendChild(btn);
         }
 
         function FunctionsDestroyer() {
